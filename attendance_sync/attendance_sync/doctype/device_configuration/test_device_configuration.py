@@ -2,10 +2,10 @@
 # See license.txt
 
 # import frappe
-from frappe.tests import UnitTestCase
+import unittest
 
 
-class TestDeviceConfiguration(UnitTestCase):
+class TestDeviceConfiguration(unittest.TestCase):
 	"""
 	Unit tests for DeviceConfiguration.
 	Use this class for testing individual functions and methods.
