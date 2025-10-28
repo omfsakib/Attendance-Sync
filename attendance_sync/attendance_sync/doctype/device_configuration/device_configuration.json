@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "autoname": "format:{device_name}",
+ "creation": "2024-10-08 15:57:08.143562",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "device_name",
+  "device_ip",
+  "major",
+  "minor",
+  "column_break_sqpx",
+  "device_user",
+  "device_user_password"
+ ],
+ "fields": [
+  {
+   "description": "Dedicated Public IP. \ne.g: 103.237.255.40",
+   "fieldname": "device_ip",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Device IP",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_sqpx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "device_user",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Device User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "device_user_password",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Device User Password",
+   "reqd": 1
+  },
+  {
+   "default": "5",
+   "description": "Refers to the major event type for filtering logs. In the Device API, different event types are represented by major codes. Code 5 typically corresponds to \"access control\" related events (such as card swipes or other access-related logs).",
+   "fieldname": "major",
+   "fieldtype": "Int",
+   "label": "Major",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Represents the minor event type within the major event type. In the case of access control, the minor code can further filter specific subtypes of events, like entry, exit, or device errors. Here, 0 likely indicates a more general access control event or no specific minor filter.",
+   "fieldname": "minor",
+   "fieldtype": "Int",
+   "label": "Minor",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "device_name",
+   "fieldtype": "Data",
+   "label": "Device Name",
+   "not_nullable": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-20 11:27:12.741616",
+ "modified_by": "Administrator",
+ "module": "Attendance Sync",
+ "name": "Device Configuration",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
