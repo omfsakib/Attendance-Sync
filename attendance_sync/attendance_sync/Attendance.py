@@ -1,11 +1,12 @@
 import json
 from datetime import datetime
+
 import frappe
 import requests
 from frappe import _
+from frappe.utils.password import get_decrypted_password
 from hrms.hr.doctype.employee_checkin.employee_checkin import add_log_based_on_employee_field
 from requests.auth import HTTPDigestAuth
-from frappe.utils.password import get_decrypted_password
 
 
 class Attendance:
@@ -15,10 +16,10 @@ class Attendance:
 		self.major = int(major)
 		self.minor = int(minor)
 		self.device_user = device_user
-		self.docname = frappe.db.get_value('Device Configuration', {'device_ip': device_ip},
-										   'name')
-		self.device_user_password = get_decrypted_password('Device Configuration', self.docname,
-														   'device_user_password')
+		self.docname = frappe.db.get_value("Device Configuration", {"device_ip": device_ip}, "name")
+		self.device_user_password = get_decrypted_password(
+			"Device Configuration", self.docname, "device_user_password"
+		)
 
 	def _format_time(self, time_obj):
 		"""Helper function to format datetime to Device required format."""
@@ -182,10 +183,7 @@ class Attendance:
 	def get_and_process_attendance(self, start_time, end_time):
 		"""Main method to fetch and process attendance logs."""
 		try:
-			data = self.fetch_all_attendance_logs(
-				self._format_time(start_time),
-				self._format_time(end_time)
-			)
+			data = self.fetch_all_attendance_logs(self._format_time(start_time), self._format_time(end_time))
 			if data:
 				self.process_logs(data)
 		except Exception:
@@ -196,8 +194,9 @@ class Attendance:
 
 
 @frappe.whitelist()
-def process_attendance_in_background(start_date, end_date, device_ip, major, minor, device_user,
-									 device_user_password):
+def process_attendance_in_background(
+	start_date, end_date, device_ip, major, minor, device_user, device_user_password
+):
 	try:
 		attendance = Attendance(
 			device_ip=device_ip,
